@@ -1,0 +1,11 @@
+Name,Age,Stress_Level,Sleep_Hours,Exercise_Hours,Academic_Workload,Anxiety_Level,Social_Support
+Alice,20,8,5.5,1.0,9,7,6
+Bob,21,6,7.0,2.5,5,4,8
+Charlie,19,9,4.0,0.5,10,8,4
+Diana,22,4,8.0,3.0,3,3,9
+Eve,20,7,6.0,1.5,8,6,7
+Frank,21,5,7.5,2.0,4,5,8
+Grace,19,10,3.5,0.0,9,9,5
+Henry,22,3,9.0,4.0,2,2,10
+Ivy,20,8,5.0,1.2,8,7,6
+Jack,21,6,7.2,2.8,6,5,7
