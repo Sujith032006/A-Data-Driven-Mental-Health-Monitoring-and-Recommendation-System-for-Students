@@ -1,0 +1,71 @@
+[
+  {
+    "timestamp": "2025-10-08T13:37:48.146127",
+    "user_message": "hi",
+    "bot_response": "Hello! I'm here to support your mental health journey. How are you feeling today?",
+    "intent": "general",
+    "sentiment": "neutral"
+  },
+  {
+    "timestamp": "2025-10-08T13:38:00.029736",
+    "user_message": "good but little worry",
+    "bot_response": "Hi there! I'm your mental health companion. What's on your mind?",
+    "intent": "general",
+    "sentiment": "positive"
+  },
+  {
+    "timestamp": "2025-10-08T14:32:31.217639",
+    "user_message": "\u2022 Talkspace: Text-based therapy (talkspace.com)\n\n",
+    "bot_response": "I'm here to help! What specific support are you looking for?",
+    "intent": "help",
+    "sentiment": "neutral"
+  },
+  {
+    "timestamp": "2025-10-08T14:42:25.525608",
+    "user_message": "HI",
+    "bot_response": "Welcome! I'm August, your advanced mental health assistant. I'm here to listen, understand, and support you through whatever you're experiencing.",
+    "intent": "general",
+    "sentiment": "neutral",
+    "emotional_state": {
+      "current_mood": "neutral",
+      "stress_level": 5,
+      "anxiety_level": 5
+    }
+  },
+  {
+    "timestamp": "2025-10-08T14:43:02.314666",
+    "user_message": "can u help me",
+    "bot_response": "Your wellbeing is the most important thing right now. Please contact emergency services (911) or the National Suicide Prevention Lifeline (988) immediately. I'm here, but professionals can provide the immediate help you need.",
+    "intent": "crisis",
+    "sentiment": "positive",
+    "emotional_state": {
+      "current_mood": "positive",
+      "stress_level": 5,
+      "anxiety_level": 5
+    }
+  },
+  {
+    "timestamp": "2025-10-08T14:46:46.179170",
+    "user_message": "Hi",
+    "bot_response": "Hi!",
+    "intent": "casual_greeting",
+    "sentiment": "neutral",
+    "emotional_state": {
+      "current_mood": "neutral",
+      "stress_level": 5,
+      "anxiety_level": 5
+    }
+  },
+  {
+    "timestamp": "2025-10-08T14:50:29.439136",
+    "user_message": "Hi i am feeling a head pain",
+    "bot_response": "Thank you for trusting me with how you're feeling. What's been the most difficult part lately?",
+    "intent": "mood",
+    "sentiment": "negative",
+    "emotional_state": {
+      "current_mood": "negative",
+      "stress_level": 5,
+      "anxiety_level": 5
+    }
+  }
+]

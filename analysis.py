@@ -1,6 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+import json
+from joblib import load
 
 def load_data(file_path):
     return pd.read_csv(file_path)
@@ -128,6 +131,15 @@ def generate_recommendation(row):
     return rec_text.strip()
 
 def analyze_data(df):
+    # Try to add model-based risk if a trained model is available
+    try:
+        _load_model()
+        if _MODEL is not None:
+            df['Risk_Probability'] = _predict_risk(df)
+    except Exception:
+        # Be resilient; keep app running even if model load/predict fails
+        pass
+
     df['Recommendation'] = df.apply(generate_recommendation, axis=1)
     return df
 
@@ -142,6 +154,61 @@ def plot_stress_distribution(df, save_path):
     plt.ylabel('Frequency')
     plt.savefig(save_path)
     plt.close()
+
+# ----------------------
+# Model loading/inference
+# ----------------------
+
+_MODEL = None
+_FEATURES = []
+_MODEL_PATH = 'models/risk_model.joblib'
+_FEATURES_PATH = 'models/feature_list.json'
+
+def _load_model():
+    global _MODEL, _FEATURES
+    if _MODEL is not None:
+        return
+    if os.path.exists(_MODEL_PATH):
+        _MODEL = load(_MODEL_PATH)
+        if os.path.exists(_FEATURES_PATH):
+            try:
+                with open(_FEATURES_PATH, 'r') as f:
+                    data = json.load(f)
+                    _FEATURES = data.get('features', [])
+            except Exception:
+                _FEATURES = []
+        else:
+            _FEATURES = []
+    else:
+        _MODEL = None
+        _FEATURES = []
+
+def _predict_risk(df: pd.DataFrame):
+    """Return risk probabilities for rows in df using trained model.
+    If required feature columns are missing, fill with zeros.
+    """
+    if _MODEL is None:
+        raise RuntimeError('Model not loaded')
+    cols = _FEATURES if _FEATURES else [c for c in ['Stress_Level','Sleep_Hours','Exercise_Hours'] if c in df.columns]
+    X = df.copy()
+    # Ensure columns
+    for c in cols:
+        if c not in X.columns:
+            X[c] = 0
+    X = X[cols]
+    try:
+        proba = _MODEL.predict_proba(X)[:, 1]
+    except Exception:
+        # If model does not support predict_proba, fallback to decision_function if available
+        if hasattr(_MODEL, 'decision_function'):
+            from sklearn.preprocessing import MinMaxScaler
+            scores = _MODEL.decision_function(X).reshape(-1, 1)
+            scaler = MinMaxScaler()
+            proba = scaler.fit_transform(scores).ravel()
+        else:
+            # Last resort: zeros
+            proba = [0.0] * len(X)
+    return proba
 
 def plot_sleep_distribution(df, save_path):
     plt.figure(figsize=(8, 6))

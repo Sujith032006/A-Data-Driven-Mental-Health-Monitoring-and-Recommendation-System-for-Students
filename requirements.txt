@@ -3,3 +3,6 @@ matplotlib
 seaborn
 streamlit
 openpyxl
+scikit-learn
+textblob
+nltk
