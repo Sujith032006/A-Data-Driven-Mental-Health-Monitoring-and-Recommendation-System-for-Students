@@ -104,7 +104,7 @@ Thresholds: Stress >7 (high), Sleep <6 (low), Exercise <1 (low).
 
 ## Support
 
-For support or to report issues, please contact [your-email@example.com]
+For support or to report issues, please contact [sujithvenkatraman@gmail.com]
 
 ## License
 
